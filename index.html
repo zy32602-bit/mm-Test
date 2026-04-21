@@ -2,15 +2,20 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#FF6B6B">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#FF6B6B">
+  <meta name="apple-mobile-web-app-title" content="赚钱人格测试">
   <title>赚钱人格测试｜测出你最适合的搞钱路径</title>
   <meta name="description" content="12道题，测出你最适合卖货、做内容、做工具还是做服务">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <!-- html2canvas 用于截图保存 -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
   <!-- 主容器 -->
@@ -160,49 +165,23 @@
           </button>
         </div>
 
-        <!-- 完整版内容免费展示 -->
-        <div class="upgrade-section">
-          <div class="upgrade-card">
-            <div class="upgrade-badge">🎁 完整版内容</div>
-            <h3 class="upgrade-title">你的专属搞钱路线图</h3>
-            <p class="upgrade-desc">
-              根据你的「爆发卖货型」人格特质，以下是你最适合的赚钱路径
-            </p>
-            <ul class="upgrade-features">
-              <li>
-                <span class="check-icon">✓</span>
-                阶段一：选择细分赛道，选品即战略
-              </li>
-              <li>
-                <span class="check-icon">✓</span>
-                阶段二：打造你的第一款引流产品
-              </li>
-              <li>
-                <span class="check-icon">✓</span>
-                阶段三：快速测试，7天验证模型
-              </li>
-              <li>
-                <span class="check-icon">✓</span>
-                阶段四：复制放大，稳定日出10单
-              </li>
-            </ul>
-
-            <div class="action-list">
-              <h4 class="action-title">✨ 立刻行动清单</h4>
-              <ol class="action-steps">
-                <li>明确定立你的第一个细分赛道</li>
-                <li>找到该赛道Top3的竞品，分析他们的卖点</li>
-                <li>设计一款低于29元的引流产品</li>
-                <li>发布内容预热，收集第一批意向用户</li>
-                <li>正式开卖，边卖边优化</li>
-              </ol>
-            </div>
-
-            <div class="warning-box">
-              <span class="warning-icon">⚠️</span>
-              <span>避坑提醒：你容易冲动选品，建议先做3天市场调研再决定</span>
-            </div>
-          </div>
+        <!-- 查看完整建议按钮 - 动态闪烁 -->
+        <div class="view-full-advice-container">
+          <button id="view-full-btn" class="btn btn-pulse">
+            <span class="pulse-ring"></span>
+            <span class="pulse-ring delay-1"></span>
+            <span class="btn-content">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v4"></path>
+                <path d="m5 5 2.8 2.9"></path>
+                <path d="m19 5-2.8 2.9"></path>
+                <path d="M6.2 12H12l2-3 3 6"></path>
+                <path d="M12 22a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"></path>
+              </svg>
+              查看完整搞钱方案
+            </span>
+          </button>
+          <p class="pulse-hint">🎁 免费解锁专属路线图</p>
         </div>
 
         <!-- 其他人格预览 -->
@@ -210,6 +189,66 @@
           <h3 class="section-heading">其他赚钱人格类型</h3>
           <div id="other-types" class="other-types-grid">
             <!-- 其他类型卡片 -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 完整版建议详情页 -->
+    <section id="full-advice-page" class="page">
+      <div class="full-advice-container">
+        <div class="full-advice-header">
+          <button id="full-advice-back-btn" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m15 18-6-6 6-6"></path>
+            </svg>
+          </button>
+          <h2 class="full-advice-title">🎁 完整搞钱方案</h2>
+          <div class="placeholder"></div>
+        </div>
+
+        <div class="full-advice-content">
+          <div class="full-advice-intro">
+            <span id="advice-type-emoji" class="advice-emoji"></span>
+            <h3 id="advice-type-name" class="advice-type-name"></h3>
+            <p class="advice-subtitle">根据你的测试结果，为你定制的专属路线图</p>
+          </div>
+
+          <div class="advice-card roadmap-card">
+            <div class="advice-card-header">
+              <span class="advice-icon">🗺️</span>
+              <h4>你的专属搞钱路线图</h4>
+            </div>
+            <div id="advice-roadmap" class="advice-roadmap">
+              <!-- 动态生成 -->
+            </div>
+          </div>
+
+          <div class="advice-card action-card">
+            <div class="advice-card-header">
+              <span class="advice-icon">✨</span>
+              <h4>立刻行动清单</h4>
+            </div>
+            <ol id="advice-actions" class="advice-actions">
+              <!-- 动态生成 -->
+            </ol>
+          </div>
+
+          <div class="advice-card warning-card">
+            <div class="advice-card-header">
+              <span class="advice-icon">⚠️</span>
+              <h4>避坑指南</h4>
+            </div>
+            <div id="advice-pitfalls" class="advice-pitfalls">
+              <!-- 动态生成 -->
+            </div>
+          </div>
+
+          <div class="advice-footer">
+            <button id="advice-restart-btn" class="btn btn-primary btn-large">
+              再测一次
+            </button>
+            <p class="advice-note">💡 建议保存截图，随时查看行动清单</p>
           </div>
         </div>
       </div>

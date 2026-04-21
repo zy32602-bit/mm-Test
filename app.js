@@ -1,21 +1,139 @@
-/**
- * 赚钱人格测试 - 主逻辑
- * 配置说明：
- * - 修改 BUY_URL 变量来设置购买链接
- * - 修改 QUESTIONS 数组来更改题目
- * - 修改 RESULTS 对象来更改结果文案
- */
+// =========================================
+// 完整建议数据（每种人格的详细路线图）
+// =========================================
+const FULL_ADVICES = {
+  seller: {
+    roadmap: [
+      { step: 1, title: '选择细分赛道', desc: '找到你有热情且需求明确的领域，小而美优先' },
+      { step: 2, title: '打造引流产品', desc: '设计一款低于29元的入门产品，快速验证需求' },
+      { step: 3, title: '7天测试模型', desc: '发布内容+销售动作，记录数据找到最优路径' },
+      { step: 4, title: '复制放大', desc: '跑通后批量复制，日出10单稳定收入' }
+    ],
+    actions: [
+      '明确定立你的第一个细分赛道',
+      '找到该赛道Top3的竞品，分析他们的卖点',
+      '设计一款低于29元的引流产品',
+      '发布内容预热，收集第一批意向用户',
+      '正式开卖，边卖边优化'
+    ],
+    personalPitfalls: [
+      '你容易冲动选品，建议先做3天市场调研再决定',
+      '不要追热点追到没沉淀，每做一个产品要想清楚积累了什么',
+      '收入忽高忽低是正常的，但要有存钱意识'
+    ]
+  },
+  content: {
+    roadmap: [
+      { step: 1, title: '确定内容方向', desc: '选择1个细分领域，持续深耕不要换赛道' },
+      { step: 2, title: '建立内容模板', desc: '找到适合你的内容形式，形成可复制的模板' },
+      { step: 3, title: '积累1000粉丝', desc: '前3个月专注涨粉，不要急着变现' },
+      { step: 4, title: '产品化变现', desc: '用粉丝信任做知识付费或带货' }
+    ],
+    actions: [
+      '确定一个你喜欢且有市场的内容领域',
+      '分析5个同领域头部账号，记录他们的爆款规律',
+      '制作你的内容模板库（封面、标题、正文结构）',
+      '坚持日更或隔天更21天，养成发布习惯',
+      '第22天开始植入变现产品，边测试边调整'
+    ],
+    personalPitfalls: [
+      '只发内容不敢卖是最大的坑，粉丝多了就要勇敢变现',
+      '数据差的时候不要自我怀疑，坚持发才能看到规律',
+      '追求完美会让你发得不够频繁，先完成再完美'
+    ]
+  },
+  tool: {
+    roadmap: [
+      { step: 1, title: '找到用户痛点', desc: '通过调研或观察确定一个具体可解决的问题' },
+      { step: 2, title: '快速出MVP', desc: '先做1.0版本上线，不要过度打磨' },
+      { step: 3, title: '测试销售转化', desc: '上架平台测试，收集真实用户反馈' },
+      { step: 4, title: '迭代优化版本', desc: '根据反馈快速迭代，形成可复购的产品' }
+    ],
+    actions: [
+      '列出你能想到的3个工具型产品方向',
+      '每个方向做简单的用户调研（问10个人愿不愿意用）',
+      '选择最被需要的方向，快速出1.0版本',
+      '上架小红书或有赞，定价19-49元测试转化',
+      '根据用户反馈迭代，边卖边完善'
+    ],
+    personalPitfalls: [
+      '过度打磨是最大的坑，先上线再优化是正确姿势',
+      '会做不会卖是常见问题，要花50%时间在营销上',
+      '不要等到"完美"才上线，用户反馈比完美更重要'
+    ]
+  },
+  service: {
+    roadmap: [
+      { step: 1, title: '明确服务定位', desc: '确定你能解决的具体问题，不要什么都做' },
+      { step: 2, title: '设计服务产品', desc: '把服务标准化，定价不要低于市场价' },
+      { step: 3, title: '建立信任背书', desc: '用案例和口碑积累信任，高客单价需要强背书' },
+      { step: 4, title: '做复购和转介绍', desc: '服务好每一个客户，让他们帮你介绍新客户' }
+    ],
+    actions: [
+      '明确你的前3个核心服务项目和定价',
+      '整理你过去的成功案例，形成可展示的案例库',
+      '设计一个低价的体验服务，用来获取第一批客户',
+      '用心服务每一个客户，超出预期才能有复购',
+      '每月主动要1个转介绍，形成转介绍漏斗'
+    ],
+    personalPitfalls: [
+      '不好意思提价是最大的坑，你的价值被严重低估了',
+      '交付太重会把自己累死，要学会设置边界',
+      '时间换钱有上限，要想着怎么让服务规模化'
+    ]
+  },
+  observer: {
+    roadmap: [
+      { step: 1, title: '深度市场调研', desc: '用1-2周时间全面了解目标市场的需求和空缺' },
+      { step: 2, title: '验证需求真伪', desc: '通过小范围测试验证你的判断是否准确' },
+      { step: 3, title: '精准切入市场', desc: '需求验证后快速入场，抢占先发优势' },
+      { step: 4, title: '建立竞争壁垒', desc: '快速积累第一批用户，形成自己的护城河' }
+    ],
+    actions: [
+      '选定一个你想进入的细分市场',
+      '做一次完整的市场调研：用户是谁、痛点是什么、竞品有哪些',
+      '设计一个最小化产品去验证需求（问卷/小范围测试）',
+      '需求验证通过后，立刻入场不要犹豫',
+      '快速积累第一批种子用户，建立自己的社群'
+    ],
+    personalPitfalls: [
+      '研究太久不动手是最危险的，机会窗口不等人',
+      '过度分析会导致决策瘫痪，70%把握就可以行动了',
+      '先发优势很重要，不要等100%准备好了才入场'
+    ]
+  },
+  system: {
+    roadmap: [
+      { step: 1, title: '明确核心目标', desc: '确定你的第一个赚钱目标，不要什么都想做' },
+      { step: 2, title: '搭建最小系统', desc: '先跑通一个闭环，不需要完美但要能跑通' },
+      { step: 3, title: '优化流程效率', desc: '跑通后逐步优化每个环节的效率' },
+      { step: 4, title: '复制放大规模', desc: '系统稳定后批量复制，扩大收入' }
+    ],
+    actions: [
+      '设定你的第一个可量化目标（如：第一个月收入3000元）',
+      '设计最简单的赚钱闭环：获客→转化→交付→复购',
+      '先跑通闭环，不要一开始就追求完美流程',
+      '跑通后，用Excel记录每个环节的数据',
+      '找到瓶颈环节优化，然后批量复制'
+    ],
+    personalPitfalls: [
+      '起步太慢是最大问题，不要还没卖就先搭全套系统',
+      '过度优化是另一个极端，系统能跑就行，后续慢慢优化',
+      '快速验证阶段的反馈很宝贵，要尽早拿到真实市场反馈'
+    ]
+  }
+};
 
 // =========================================
 // 全局配置
 // =========================================
 const CONFIG = {
-  // 品牌名
   BRAND: '赚钱人格测试',
-
-  // 副标题
   SUBTITLE: '测出你最适合的搞钱路径',
 };
+
+// 当前测试结果类型
+let currentResultType = null;
 
 // =========================================
 // 题目数据（12道题）
@@ -274,7 +392,8 @@ const pages = {
   home: document.getElementById('home-page'),
   quiz: document.getElementById('quiz-page'),
   result: document.getElementById('result-page'),
-  preview: document.getElementById('preview-page')
+  preview: document.getElementById('preview-page'),
+  fullAdvice: document.getElementById('full-advice-page')
 };
 
 const elements = {
@@ -288,7 +407,15 @@ const elements = {
   restartBtn: document.getElementById('restart-btn'),
   previewBackBtn: document.getElementById('preview-back-btn'),
   saveCardBtn: document.getElementById('save-card-btn'),
-  otherTypesContainer: document.getElementById('other-types')
+  otherTypesContainer: document.getElementById('other-types'),
+  viewFullBtn: document.getElementById('view-full-btn'),
+  fullAdviceBackBtn: document.getElementById('full-advice-back-btn'),
+  adviceRestartBtn: document.getElementById('advice-restart-btn'),
+  adviceTypeEmoji: document.getElementById('advice-type-emoji'),
+  adviceTypeName: document.getElementById('advice-type-name'),
+  adviceRoadmap: document.getElementById('advice-roadmap'),
+  adviceActions: document.getElementById('advice-actions'),
+  advicePitfalls: document.getElementById('advice-pitfalls')
 };
 
 // =========================================
@@ -423,6 +550,9 @@ function showResult() {
   const resultType = calculateResult();
   const result = RESULTS[resultType];
 
+  // 保存当前结果类型
+  currentResultType = resultType;
+
   // 填充结果数据
   document.getElementById('result-title').textContent = result.name;
   document.getElementById('result-tagline').textContent = result.tagline;
@@ -459,10 +589,46 @@ function renderOtherTypes(currentType) {
 }
 
 // =========================================
-// 预览完整版报告
+// 查看完整建议
 // =========================================
-function showPreview() {
-  switchPage('preview');
+function showFullAdvice() {
+  if (!currentResultType) return;
+
+  const result = RESULTS[currentResultType];
+  const advice = FULL_ADVICES[currentResultType];
+
+  // 填充顶部信息
+  elements.adviceTypeEmoji.textContent = result.emoji;
+  elements.adviceTypeName.textContent = result.name;
+
+  // 填充路线图
+  elements.adviceRoadmap.innerHTML = advice.roadmap.map((item, idx) => `
+    <div class="roadmap-item">
+      <div class="roadmap-step-num" style="background: ${result.color}">${item.step}</div>
+      <div class="roadmap-item-content">
+        <div class="roadmap-item-title">${item.title}</div>
+        <div class="roadmap-item-desc">${item.desc}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // 填充行动清单
+  elements.adviceActions.innerHTML = advice.actions.map((action, idx) => `
+    <li class="advice-action-item">
+      <span class="action-num" style="background: ${result.color}">${idx + 1}</span>
+      <span class="action-text">${action}</span>
+    </li>
+  `).join('');
+
+  // 填充避坑指南
+  elements.advicePitfalls.innerHTML = advice.personalPitfalls.map(p => `
+    <div class="pitfall-item">
+      <span class="pitfall-icon">⚠</span>
+      <span>${p}</span>
+    </div>
+  `).join('');
+
+  switchPage('fullAdvice');
   window.scrollTo(0, 0);
 }
 
@@ -472,10 +638,67 @@ function backToResult() {
 }
 
 // =========================================
-// 保存结果卡片（提示用户截图）
+// 保存结果卡片（使用 html2canvas 截图下载）
 // =========================================
 function saveResultCard() {
-  showToast('📸 长按结果卡片即可保存截图分享！');
+  const card = document.getElementById('result-card');
+  const saveBtn = document.getElementById('save-card-btn');
+
+  if (!card) {
+    showToast('❌ 无法找到结果卡片');
+    return;
+  }
+
+  // 显示加载状态
+  const originalText = saveBtn.innerHTML;
+  saveBtn.innerHTML = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M12 6v6l4 2"></path>
+    </svg>
+    正在生成...
+  `;
+  saveBtn.disabled = true;
+
+  // 使用 html2canvas 截图
+  html2canvas(card, {
+    scale: 2,
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: '#ffffff',
+    logging: false
+  }).then(canvas => {
+    // 转换为图片数据
+    const image = canvas.toDataURL('image/png');
+
+    // 创建下载链接
+    const link = document.createElement('a');
+    link.download = `赚钱人格测试_${currentResultType || '结果'}.png`;
+    link.href = image;
+    link.click();
+
+    // 恢复按钮状态
+    saveBtn.innerHTML = `
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      已保存
+    `;
+
+    showToast('✅ 结果卡片已保存到相册！');
+
+    // 3秒后恢复按钮文字
+    setTimeout(() => {
+      saveBtn.innerHTML = originalText;
+      saveBtn.disabled = false;
+    }, 3000);
+
+  }).catch(err => {
+    console.error('截图失败:', err);
+    saveBtn.innerHTML = originalText;
+    saveBtn.disabled = false;
+    showToast('❌ 保存失败，请截图保存');
+  });
 }
 
 // =========================================
@@ -497,6 +720,15 @@ function bindEvents() {
 
   // 返回上一题
   elements.backBtn.addEventListener('click', goBack);
+
+  // 查看完整建议
+  elements.viewFullBtn.addEventListener('click', showFullAdvice);
+
+  // 完整建议页返回
+  elements.fullAdviceBackBtn.addEventListener('click', backToResult);
+
+  // 完整建议页重新测试
+  elements.adviceRestartBtn.addEventListener('click', restartQuiz);
 
   // 重新测试
   elements.restartBtn.addEventListener('click', restartQuiz);
