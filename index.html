@@ -2,14 +2,14 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#FF6B6B">
   <meta name="apple-mobile-web-app-title" content="Make Money人格测试">
   <title>赚钱人格测试｜测出你最适合的搞钱路径</title>
-  <meta name="description" content="12道题，测出你最适合卖货、做内容、做工具还是做服务">
+  <meta name="description" content="12道题，测出你最适合卖货、做内容、做工具、做服务、做选品还是做系统">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@
 
         <div class="home-description">
           <p>你不是赚不到钱，只是还没找到适合自己的赚钱模式。</p>
-          <p class="highlight-text">12道题，测出你最适合<br>卖货 · 做内容 · 做工具 · 做服务</p>
+          <p class="highlight-text">12道题，测出你最适合<br>卖货 · 内容 · 工具 · 服务<br>选品 · 系统</p>
         </div>
 
         <div class="home-features">
@@ -74,7 +74,7 @@
     <!-- 测试页面 -->
     <section id="quiz-page" class="page">
       <div class="quiz-header">
-        <button id="back-btn" class="back-btn">
+        <button id="back-btn" class="back-btn" aria-label="返回上一题">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="m15 18-6-6 6-6"></path>
           </svg>
@@ -149,13 +149,21 @@
 
         <!-- 操作按钮 -->
         <div class="result-actions">
+          <button id="save-poster-btn" class="btn btn-primary save-main">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <path d="m21 15-5-5L5 21"></path>
+            </svg>
+            保存短海报
+          </button>
           <button id="save-card-btn" class="btn btn-secondary">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
-            保存结果卡片
+            保存详细卡
           </button>
           <button id="restart-btn" class="btn btn-outline">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -198,7 +206,7 @@
     <section id="full-advice-page" class="page">
       <div class="full-advice-container">
         <div class="full-advice-header">
-          <button id="full-advice-back-btn" class="back-btn">
+          <button id="full-advice-back-btn" class="back-btn" aria-label="返回结果页">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="m15 18-6-6 6-6"></path>
             </svg>
@@ -254,99 +262,55 @@
       </div>
     </section>
 
-    <!-- 完整版报告示例页 -->
-    <section id="preview-page" class="page">
-      <div class="preview-container">
-        <div class="preview-header">
-          <button id="preview-back-btn" class="back-btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m15 18-6-6 6-6"></path>
-            </svg>
-          </button>
-          <h2 class="preview-title">完整版报告示例</h2>
-          <div class="placeholder"></div>
-        </div>
-
-        <div class="preview-content">
-          <div class="preview-card">
-            <div class="preview-badge">📋 示例预览</div>
-
-            <div class="preview-section">
-              <h3 class="preview-section-title">🗺️ 你的专属搞钱路线图</h3>
-              <div class="preview-placeholder">
-                <div class="roadmap-preview">
-                  <div class="roadmap-step">
-                    <span class="step-num">1</span>
-                    <span class="step-text">第1周：市场调研与定位</span>
-                  </div>
-                  <div class="roadmap-step">
-                    <span class="step-num">2</span>
-                    <span class="step-text">第2周：产品/服务雏形</span>
-                  </div>
-                  <div class="roadmap-step">
-                    <span class="step-num">3</span>
-                    <span class="step-text">第3-4周：测试与迭代</span>
-                  </div>
-                  <div class="roadmap-step active">
-                    <span class="step-num">4</span>
-                    <span class="step-text">第1单收入（完整版解锁）</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="preview-section">
-              <h3 class="preview-section-title">✅ 30天起步行动清单</h3>
-              <div class="checklist-preview">
-                <label class="checklist-item">
-                  <input type="checkbox" checked disabled>
-                  <span>Day 1-3：了解你的赚钱人格特点</span>
-                </label>
-                <label class="checklist-item">
-                  <input type="checkbox" disabled>
-                  <span>Day 4-7：选择你的第一个产品方向（完整版解锁）</span>
-                </label>
-                <label class="checklist-item">
-                  <input type="checkbox" disabled>
-                  <span>Day 8-14：打造最小可行产品（完整版解锁）</span>
-                </label>
-                <label class="checklist-item locked">
-                  <span class="lock-icon">🔒</span>
-                  <span>还有 27 项待解锁...</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="preview-section">
-              <h3 class="preview-section-title">🛠️ 工具包与模板资源</h3>
-              <div class="resources-preview">
-                <div class="resource-item">
-                  <span class="resource-icon">📄</span>
-                  <span class="resource-name">产品定价计算表</span>
-                  <span class="resource-tag">模板</span>
-                </div>
-                <div class="resource-item">
-                  <span class="resource-icon">📊</span>
-                  <span class="resource-name">收入追踪看板</span>
-                  <span class="resource-tag">工具</span>
-                </div>
-                <div class="resource-item locked">
-                  <span class="lock-icon">🔒</span>
-                  <span>还有 12+ 资源待解锁</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="preview-cta">
-            <button id="preview-unlock-btn" class="btn btn-primary btn-large btn-glow">
-              解锁查看完整内容
-            </button>
-          </div>
-        </div>
+    <!-- 短海报模板 -->
+    <div id="poster-card" class="poster-card" aria-hidden="true" inert>
+      <div class="poster-topline">赚钱人格测试</div>
+      <div id="poster-emoji" class="poster-emoji"></div>
+      <h2 id="poster-title" class="poster-title"></h2>
+      <p id="poster-tagline" class="poster-tagline"></p>
+      <div id="poster-keywords" class="poster-keywords"></div>
+      <div class="poster-path-box">
+        <span>适合路径</span>
+        <strong id="poster-path"></strong>
       </div>
-    </section>
+      <div class="poster-footer">测出你最适合的搞钱路径</div>
+    </div>
+  </div>
 
+  <!-- 其他人格弹窗 -->
+  <div id="type-modal" class="modal-overlay" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="type-modal-title">
+      <button id="type-modal-close" class="modal-close" aria-label="关闭弹窗">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+      <div id="type-modal-emoji" class="modal-emoji"></div>
+      <h3 id="type-modal-title" class="modal-title"></h3>
+      <p id="type-modal-tagline" class="modal-tagline"></p>
+      <div id="type-modal-keywords" class="modal-keywords"></div>
+      <p id="type-modal-description" class="modal-description"></p>
+      <div class="modal-path">
+        <span>适合路径</span>
+        <strong id="type-modal-path"></strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- 图片预览弹窗 -->
+  <div id="image-preview-modal" class="modal-overlay" hidden>
+    <div class="modal-card image-modal-card" role="dialog" aria-modal="true" aria-labelledby="image-preview-title">
+      <button id="image-preview-close" class="modal-close" aria-label="关闭预览">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+      <h3 id="image-preview-title" class="modal-title">图片预览</h3>
+      <img id="generated-image" class="generated-image" alt="生成的测试结果图片">
+      <button id="download-image-btn" class="btn btn-primary">下载图片</button>
+    </div>
   </div>
 
   <!-- Toast 提示 -->
